@@ -1,4 +1,4 @@
-# ![Logo](http://i.imgur.com/WI4m7hn.png?1) Fun
+# Fun
 A Google Chrome extension to follow and unfollow people with a single click, on Twitter
 
 ![Demo GIF](http://i.imgur.com/yPrpcGo.gif?1)
