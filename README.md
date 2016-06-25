@@ -16,7 +16,7 @@ A Google Chrome extension to follow and unfollow people with a single click, on 
     * ```FOLLOW``` Button: Follows a specific number of users (this number is given by the user).
     * ```UNFOLLOW``` Button: Unfollows only those people who follows you.
     * ```UNFOLLOW ALL``` Button: Unfollows all the people in your following list.
-* Install the chrome extension from the [Google Chrome Store]().
+* Install the chrome extension from the [Google Chrome Store](https://chrome.google.com/webstore/detail/fun/omkpkdlfblobhpgoofljooblgobcjcoo).
 * Visit [twitter](https://twitter.com/).
 * Using ```FOLLOW```:
     * Go to any person's profile page (make sure the URL is https://twitter.com/someTwitterHandle/followers).
