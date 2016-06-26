@@ -1,11 +1,12 @@
 /**
  * Follow all only works for https://www.twitter.com/someTwitterHandle/followers
  * Unfollow all only works for  https://www.twitter.com/following
- * A PERSON CAN FOLLOW 1000 PEOPLE IN A DAY
+ * TWITTER LETS A PERSON TO FOLLOW AT MAX 1000 PEOPLE A DAY
  */
 
 // Common Module
 var common = (function() {
+    "use strict";
     /**
      * Test Case: Chane the background color of each button
      * @param btn - Button element
@@ -18,20 +19,20 @@ var common = (function() {
      * Find total people following or total followers.
      * @param {string} status - If status is "following", find total people following, if status is "followers"
      * then get total follwers on a particular person's page.
-     * @return {number} - totalFollowing, totalFollowers
+     * @return {number} - totalFollowing or totalFollowers
      */
     function updateFollowersOrFollowing(status) {
-        var el = document.querySelectorAll('[data-nav]');
-        var followingAnchorTag,
-            totalFollowing,
-            totalFollowers;
+        var el = document.querySelectorAll('[data-nav]'),
+        followingAnchorTag,
+        totalFollowing,
+        totalFollowers;
         for(var i = 0; i < el.length; i++) {
 
             // Get that "data-nav" element that has value "following"
             if(el[i].getAttribute("data-nav") == status) {
                 /* Anchor tag, contains the total number of followers.
-                * (Beside Tweets, Following and Likes)
-                */
+                 * (Beside Tweets, Following and Likes)
+                 */
                 followingAnchorTag = el[i];
                 break;
             }
@@ -44,8 +45,8 @@ var common = (function() {
                 var spanTag = followingAnchorTag.children[j];
 
                 /* We get total followers in the form "3,456" i.e. string. First replace ","
-                * with space, and parse the string to get integer.
-                */
+                 * with space, and parse the string to get integer.
+                 */
                 var temp = spanTag.innerHTML;
                 if(status == "following") {
                     totalFollowing = parseInt(temp.replace(/,/g, ''));
@@ -63,10 +64,10 @@ var common = (function() {
     }
 })();
 var FollowAll = (function() {
-	/**
-	 * Have to take how many people to follow as twitter does not show correctly the total followers of a person in the header.
-	 * Sometimes the total followers in the header and actually available people in the followers page differ.
-	 */
+    /**
+     * Have to take how many people to follow as twitter does not show correctly the total followers of a person in the header.
+     * Sometimes the total followers in the header and actually available people in the followers page differ.
+     */
     "use strict";
     var totalFollowers;
     var intervalId;
@@ -77,84 +78,82 @@ var FollowAll = (function() {
      */
     function _followAll() {
         // Go to top
- 		window.scrollTo(0,0);
+        window.scrollTo(0,0);
 
- 		for(var i = 0; i <= totalFollowers; i++) {
- 			// Get each button from the buttons array
- 			var btn = btnArray[i];
- 			/*
- 			 * Iterate over each span tag inside the btn element.
- 			 * If the btn has text "Follow" then only click the button
- 			 */
- 			for(var j = 0; j < btn.children.length; j++) {
- 				/*
- 				 * Check the display property of current span element.
- 				 * If the display property of current span element is "block" and the
- 				 * text is "Following", then don't click the button. We are already follwing
- 				 * the person. (We would unfollow that person if we click the button)
- 				 */
- 				var currentStyleOfSpan = _getStyle(btn.children[j], "display");
- 				if(currentStyleOfSpan ==  "block" && btn.children[j].innerHTML.trim() == "Following") {
- 					console.log("Time to break, move on to next btn");
- 					break;
- 				} else if(currentStyleOfSpan ==  "block" && btn.children[0].childElementCount == 1){
- 					/* btn.children[0].childElementCount == 1, true when span element contains another
- 					 * span tag "<span class="Icon Icon--follow"></span>" (this is the follow icon)
- 					 * and text "Follow". This is the  Follow button.
- 					 */
+        for(var i = 0; i <= totalFollowers; i++) {
+            // Get each button from the buttons array
+            var btn = btnArray[i];
+            /**
+             * Iterate over each span tag inside the btn element.
+             * If the btn has text "Follow" then only click the button
+             */
+            for(var j = 0; j < btn.children.length; j++) {
+                /**
+                 * Check the display property of current span element.
+                 * If the display property of current span element is "block" and the
+                 * text is "Following", then don't click the button. We are already follwing
+                 * the person. (We would unfollow that person if we click the button)
+                 */
+                var currentStyleOfSpan = _getStyle(btn.children[j], "display");
+                if(currentStyleOfSpan ==  "block" && btn.children[j].innerHTML.trim() == "Following") {
+                    console.log("Time to break, move on to next btn");
+                    break;
+                } else if(currentStyleOfSpan ==  "block" && btn.children[0].childElementCount == 1){
+                    /** btn.children[0].childElementCount == 1, true when span element contains another
+                     * span tag "<span class="Icon Icon--follow"></span>" (this is the follow icon)
+                     * and text "Follow". This is the  Follow button.
+                     */
                     btn.click()
 
- 					/*
- 					 * TEST CASE: This is a test case. To be used while development. This test case
- 					 * changes the background color of ONLY "Follow" buttons instead of clicking them.
- 					 */
- 					// common.test(btn, "yellow");
- 				}
- 			}
- 		}
-		// Success message
-		alert("Successfully followed!");
+                    /**
+                     * TEST CASE: This is a test case. To be used while development. This test case
+                     * changes the background color of ONLY "Follow" buttons instead of clicking them.
+                     */
+                    // common.test(btn, "yellow");
+                }
+            }
+        }
+        // Success message
+        alert("Successfully followed!");
     }
     /**
      * Get the css "display" property for span elements inside the "Follow" button
      */
     function _getStyle(el, styleProp) {
 
-		var temp;
-		if(el.currentStyle) {
-			temp = el.currentStyle[styleProp];
-		}
-		else if(window.getComputedStyle) {
-			temp = document.defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
-		}
-		return temp;
-	}
+        var temp;
+        if(el.currentStyle) {
+            temp = el.currentStyle[styleProp];
+        }
+        else if(window.getComputedStyle) {
+            temp = document.defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
+        }
+        return temp;
+    }
 
     /**
      * Scroll the container till we reach the bottom
-     * Make sure the scripts run, when URL: https://www.twitter.com/someTwitterHandle/followers
-     * and not  https://www.twitter.com/ or some other
      */
     function _scrollContainer() {
-		window.scrollTo(0, document.body.scrollHeight);
-		btnArray = document.getElementsByClassName("user-actions-follow-button");
-		if(btnArray.length >= totalFollowers) {
-			clearInterval(intervalId);
-			console.log("Clearing interval!");
-			_followAll();
-		}
+        window.scrollTo(0, document.body.scrollHeight);
+        btnArray = document.getElementsByClassName("user-actions-follow-button");
+        if(btnArray.length >= totalFollowers) {
+            clearInterval(intervalId);
+            console.log("Clearing interval!");
+            _followAll();
+        }
     }
     /**
      * Update total followers and start interval
      */
     function init(customToFollow = false) {
-		if(customToFollow) {
-			totalFollowers = customToFollow;
-			// console.log("Custom to follow");
-		} else {
-    		totalFollowers = common.update("followers");
-		}
-    	intervalId = setInterval(_scrollContainer, 500);
+        if(customToFollow) {
+            totalFollowers = customToFollow;
+            // console.log("Custom to follow");
+        } else {
+            totalFollowers = common.update("followers");
+        }
+        intervalId = setInterval(_scrollContainer, 500);
     }
     return {
         init: init
@@ -168,45 +167,45 @@ var UnfollowAll = (function() {
     var btnArray;
 
     /**
-	 * Unfollow all the people
-	 */
-	function _unFollowAll(){
+     * Unfollow all the people
+     */
+    function _unFollowAll(){
 
         // console.log(btnArray.length);
-		// Go to top
-		window.scrollTo(0,0);
-		for(var i = 0; i < btnArray.length; i++) {
-			// Get each button from the buttons array
-			var btn = btnArray[i];
+        // Go to top
+        window.scrollTo(0,0);
+        for(var i = 0; i < btnArray.length; i++) {
+            // Get each button from the buttons array
+            var btn = btnArray[i];
             btn.click();
             /*
              * TEST CASE: This is a test case. To be used while development. This test case
              * changes the background color of the "Following" buttons.
              */
             //common.test(btn, "pink");
-		}
+        }
         // Success message
         alert("Everyone unfollowed!");
-	}
+    }
 
     /**
-	 * Scroll the container till we reach the bottom
-	 */
-	function _scrollContainer() {
-		window.scrollTo(0, document.body.scrollHeight);
-		btnArray = document.getElementsByClassName("user-actions-follow-button");
-		if(btnArray.length == totalFollowing) {
+     * Scroll the container till we reach the bottom
+     */
+    function _scrollContainer() {
+        window.scrollTo(0, document.body.scrollHeight);
+        btnArray = document.getElementsByClassName("user-actions-follow-button");
+        if(btnArray.length == totalFollowing) {
             console.log("Clearing interval!");
-			clearInterval(intervalId);
-			_unFollowAll();
-		}
-	}
+            clearInterval(intervalId);
+            _unFollowAll();
+        }
+    }
     /**
      * Update total following and start interval
      */
     function init() {
         totalFollowing = common.update("following");
-    	intervalId = setInterval(_scrollContainer, 500);
+        intervalId = setInterval(_scrollContainer, 500);
     }
     return {
         init: init
@@ -224,16 +223,16 @@ var Unfollow = (function() {
     var btnArray = -1;
 
     /**
-	 * Unfollow only those people who follow you
-	 */
-	function _unFollow(){
+     * Unfollow only those people who follow you
+     */
+    function _unFollow(){
         var btn;
 
-		// Go to top
-		window.scrollTo(0,0);
+        // Go to top
+        window.scrollTo(0,0);
         // Get only those span's containing "FOLLOWS YOU"
         var spanArray = document.getElementsByClassName("FollowStatus");
-		for(var i = 0; i < spanArray.length; i++) {
+        for(var i = 0; i < spanArray.length; i++) {
             // Now navigate to the conatiner containing span "FOLLOWS YOU" and the Following Button
             var container = document.getElementsByClassName("FollowStatus")[i].parentNode.parentNode.parentNode;
             // Get the following button, and click it to unfollow
@@ -245,30 +244,30 @@ var Unfollow = (function() {
              * changes the background color of the "Following" buttons.
              */
             // common.test(btn, "red");
-		}
+        }
         // Success message
         alert("Unfollowed only those who follow you!");
-	}
+    }
 
     /**
-	 * Scroll the container till we reach the bottom
-	 */
-	function _scrollContainer(){
-		window.scrollTo(0, document.body.scrollHeight);
-		btnArray = document.getElementsByClassName("user-actions-follow-button");
-		if(btnArray.length == totalFollowing) {
+     * Scroll the container till we reach the bottom
+     */
+    function _scrollContainer(){
+        window.scrollTo(0, document.body.scrollHeight);
+        btnArray = document.getElementsByClassName("user-actions-follow-button");
+        if(btnArray.length == totalFollowing) {
             console.log("Clearing interval!");
-			clearInterval(intervalId);
-			_unFollow();
-		}
-	}
+            clearInterval(intervalId);
+            _unFollow();
+        }
+    }
     /**
      * Update total following and start interval
      */
     function init() {
         totalFollowing = common.update("following");
         console.log(totalFollowing);
-    	intervalId = setInterval(_scrollContainer, 500);
+        intervalId = setInterval(_scrollContainer, 500);
     }
     return {
         init: init
