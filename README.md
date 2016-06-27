@@ -1,4 +1,4 @@
-# Fun
+# [Fun](http://aakash-cr7.github.io/fun/)
 A Google Chrome extension to follow and unfollow people with a single click, on Twitter. Get it now on [Google Chrome Store](https://chrome.google.com/webstore/detail/fun/omkpkdlfblobhpgoofljooblgobcjcoo).
 
 ![Demo GIF](http://i.imgur.com/yPrpcGo.gif?1)
