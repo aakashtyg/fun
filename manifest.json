@@ -3,7 +3,7 @@
 
     "name": "Fun",
     "description": "A Google Chrome extension to follow and unfollow people with a single click, on Twitter",
-    "version": "1.0.0",
+    "version": "0.1.6",
 
     "icons": {
         "16": "images/icon16.png",

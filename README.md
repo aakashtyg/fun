@@ -1,5 +1,7 @@
-# [Fun](http://aakash-cr7.github.io/fun/)
+# [Fun](http://aakash-cr7.github.io/fun/) (Beta)
 A Google Chrome extension to follow and unfollow people with a single click, on Twitter. Get it now on [Google Chrome Store](https://chrome.google.com/webstore/detail/fun/omkpkdlfblobhpgoofljooblgobcjcoo).
+
+**NOTE:** It is advised not to follow more than 200-300 people a day as twitter blocks a user (for a day or asks for phone verification) for using automated scripts.
 
 ![Demo GIF](http://i.imgur.com/yPrpcGo.gif?1)
 
@@ -55,9 +57,8 @@ A Google Chrome extension to follow and unfollow people with a single click, on 
 * You are all set! ```Fun's``` icon will now appear beside the address bar in the browser.
 
 ### <a name="change-log"></a>Change log
-**v1.0.0: 23 June 2016 (Latest)**
-
-* This is the latest version.
+* **v0.1.6: 23 June 2016 (Latest)** : Beta packaged launched.
+* **v0.1.7: 29 June 2016 (Latest)** : Unfollow functionality removed. Currently supports only Follow feature.
 
 ### <a name="contributing"></a>Contributing
 * I'd love for people to get involved in the development of this extension, so please do create issues and pull requests.
