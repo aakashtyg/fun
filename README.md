@@ -57,8 +57,8 @@ A Google Chrome extension to follow and unfollow people with a single click, on 
 * You are all set! ```Fun's``` icon will now appear beside the address bar in the browser.
 
 ### <a name="change-log"></a>Change log
-* **v0.1.6: 23 June 2016 (Latest)** : Beta packaged launched.
-* **v0.1.7: 29 June 2016 (Latest)** : Unfollow functionality removed. Currently supports only Follow feature.
+* **v1.0.0: 23 June 2016 (Latest)** : Beta packaged launched.
+* **v1.0.2: 29 June 2016 (Latest)** : Unfollow functionality removed. Currently supports only Follow feature.
 
 ### <a name="contributing"></a>Contributing
 * I'd love for people to get involved in the development of this extension, so please do create issues and pull requests.
